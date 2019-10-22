@@ -4,8 +4,10 @@ class Pages extends Controller
   public function __construct()
   { }
 
-  public function index()
-  {
+  public function index(){
+    if(isLoggedIn()) {
+      redirect('posts');
+    }
     $data = [
       'title' => 'SharePosts',
       'description' => 'Simple social network built on the Pledov MVC PHP framework'
@@ -16,8 +18,10 @@ class Pages extends Controller
 
   public function about()
   {
-    $data = ['title' => 'About Us',
-    'description' => 'App to share posts with outher users'];
+    $data = [
+      'title' => 'About Us',
+      'description' => 'App to share posts with outher users'
+    ];
     $this->view('pages/about', $data);
   }
 }
